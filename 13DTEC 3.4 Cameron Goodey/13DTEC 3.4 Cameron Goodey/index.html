@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	
+		<!-- Meta tags -->
+		<meta charset="utf-8">
+		
+		<!-- JS Links -->
+		<script src="p5.js"></script>
+		<!--<script src="firebase.js"></script>-->
+		<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-analytics.js"></script>
+		<script src="index.js"></script>
+		<script src="consoleLogging.js"></script>
+		
+		<!-- CSS Links -->
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"/>
+
+	</head>
+	<body>
+		<h1>
+		
+			<i>Kool</i> Food Ordering App
+		
+		</h1>
+		
+		<div class="content">
+
+			<form id="add-user-form">
+				<input type="text" name="name" Placeholder="User name">
+				<input type="number" name="age" Placeholder="User age" min="0">
+				<button>Add User</button>
+			</form>
+			<ul id="user-list"></ul>
+
+        </div>
+		
+		<script>
+			// Your web app's Firebase configuration
+			var firebaseConfig = {
+				apiKey: "AIzaSyAd9Ua9u7PTsEDMt2GRK5tKZmdsaTfLFFw",
+				authDomain: "dtec-6f679.firebaseapp.com",
+				databaseURL: "https://dtec-6f679.firebaseio.com",
+				projectId: "dtec-6f679",
+				storageBucket: "dtec-6f679.appspot.com",
+				messagingSenderId: "639091647346",
+				appId: "1:639091647346:web:102f06a29dc2d8bb27f3eb",
+				measurementId: "G-6ZR1CXJG17"
+			};
+			
+			// Initialize Firebase
+			firebase.initializeApp(firebaseConfig);
+			firebase.analytics();
+			
+		</script>
+		<script src="firebaseStuff.js"></script>
+		
+	</body>
+</html>
