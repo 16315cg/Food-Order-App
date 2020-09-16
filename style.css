@@ -2,13 +2,6 @@ canvas {
   display: block;
 }
 
-#test {
-	background-color: #C8C8C8;
-	color: white;
-	font-family: comic sans ms;
-	font-size: 14px;
-}
-
 #smallText {
 	color: #C8C8C8;
 	font-family: comic sans ms;
@@ -118,14 +111,14 @@ form:after{
 }
 
 button{
+	background-color: #C8C8C8;
+	color: white;
+	font-size: 14px;
     border: 0;
-    background: #fff;
     border-radius: 10px;
     padding: 13px;
-    width: 14%;
+    width: 10%;
     box-shadow: -1px 0px 1px rgba(0,0,0,0.1);
     font-weight: bold;
-    font-family: ubuntu;
     letter-spacing: 1px;
-    color: #999;
 }

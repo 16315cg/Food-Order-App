@@ -9,11 +9,14 @@ var dataRec = {
     photoURL: ''
 };
 
-var category = "meat";
+var collection = 'products';
+var type = currentPage;
 
 const db = firebase.firestore();
 var lat;
 var lon;
+
+//current issue: runs the listener before it runs the setup so the type sort returns undefined (i think)
 
 //Firebase Login
 function fb_login(_dataRec) {
@@ -64,18 +67,15 @@ function renderFood(doc){
 	let price = document.createElement('span');
 	let imageURL = document.createElement('img');
 	let imgURL = doc.data().imageURL;
-	let cross = document.createElement('div');
 	
 	li.setAttribute('data-id', doc.id);
 	name.textContent = doc.data().name;
 	price.textContent = "$" + doc.data().price;
 	imageURL.textContent = doc.data().imageURL;
-	cross.textContent = 'x';
 	
 	li.appendChild(name);
 	li.appendChild(price);
 	li.appendChild(imageURL);
-	li.appendChild(cross);
 	
 	console.log(imgURL);
 	imageURL.src = imgURL;
@@ -85,26 +85,40 @@ function renderFood(doc){
 	foodList.appendChild(li);
 	
 	//deleting data
-	cross.addEventListener('click', (e) => {
+	/*cross.addEventListener('click', (e) => {
 		e.stopPropagation();
 		let id = e.target.parentElement.getAttribute('data-id');
 		db.collection('meat').doc(id).delete();
 		console.log('Document ' + id + ' has been deleted. 🦀🦀🦀');
-	})
+	})*/
 }
 
 //real-time listener
-db.collection(category).orderBy('name', 'desc').onSnapshot(snapshot => {
-	let changes = snapshot.docChanges();
-	changes.forEach(change => {
-		if (change.type == 'added') {
-			renderFood(change.doc);
-		} else if (change.type == 'removed') {
-			let li = foodList.querySelector('[data-id=' + change.doc.id + ']');
-			foodList.removeChild(li);
-		}
+if (currentPage == 'home') {
+	db.collection('products').where('type', '>=', 'a').where('type', '<=', 'z').onSnapshot(snapshot => {
+		let changes = snapshot.docChanges();
+		changes.forEach(change => {
+			if (change.type == 'added') {
+				renderFood(change.doc);
+			} else if (change.type == 'removed') {
+				let li = foodList.querySelector('[data-id=' + change.doc.id + ']');
+				foodList.removeChild(li);
+			}
+		})
 	})
-})
+} else {
+	db.collection(collection).where('type', '==', type).onSnapshot(snapshot => {
+		let changes = snapshot.docChanges();
+		changes.forEach(change => {
+			if (change.type == 'added') {
+				renderFood(change.doc);
+			} else if (change.type == 'removed') {
+				let li = foodList.querySelector('[data-id=' + change.doc.id + ']');
+				foodList.removeChild(li);
+			}
+		})
+	})
+}
 
 // saving data
 /* form.addEventListener('submit', (event) => {
