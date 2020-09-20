@@ -13,12 +13,12 @@
 		<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-database.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-analytics.js"></script>
-		<script src="index.js"></script>
-		<script src="pageSetup.js"></script>
+		<!--<script src="docAdd.js"></script>-->
+		<!--<script src="pageSetup.js"></script>-->
 		<script src="consoleLogging.js"></script>
 		
 		<!-- CSS Links -->
-		<link rel="stylesheet" type="text/css" href="style2.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
 		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"/>
 
 	</head>
@@ -28,16 +28,19 @@
 			<i>Kool</i> Food Ordering App
 		
 		</h1>
+		
 		<div class="content">
-			
-			<!--<form id="add-user-form">
-				<input type="text" name="name" Placeholder="User name">
-				<input type="number" name="price" Placeholder="User age" min="0">
-				<button>Add User</button>
-			</form>-->
+
+			<form id="add-food-form">
+				<input type="text" name="name" Placeholder="Name">
+				<input type="number" name="price" Placeholder="Price" min="0">
+				<input type="text" name="imageURL" Placeholder="Image URL">
+				<input type="text" name="type" Placeholder="Product Type">
+				<button>Add Product</button>
+			</form>
 			<ul id="food-list"></ul>
-				
-		</div>
+
+        </div>
 		
 		<script>
 			// Your web app's Firebase configuration
@@ -56,6 +59,7 @@
 			firebase.initializeApp(firebaseConfig);
 			firebase.analytics();
 			
+			var currentPage = "docAdd";
 		</script>
 		<script src="firebaseStuff.js"></script>
 		

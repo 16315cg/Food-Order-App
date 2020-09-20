@@ -73,14 +73,11 @@ function renderFood(doc){
 	price.textContent = "$" + doc.data().price;
 	imageURL.textContent = doc.data().imageURL;
 	
+	li.appendChild(imageURL);
 	li.appendChild(name);
 	li.appendChild(price);
-	li.appendChild(imageURL);
 	
-	console.log(imgURL);
 	imageURL.src = imgURL;
-	imageURL.width = 20;
-	imageURL.height = 20;
 	
 	foodList.appendChild(li);
 	
@@ -95,7 +92,7 @@ function renderFood(doc){
 
 //real-time listener
 if (currentPage == 'home') {
-	db.collection('products').where('type', '>=', 'a').where('type', '<=', 'z').onSnapshot(snapshot => {
+	db.collection('products').orderBy("name").onSnapshot(snapshot => {
 		let changes = snapshot.docChanges();
 		changes.forEach(change => {
 			if (change.type == 'added') {
@@ -107,7 +104,7 @@ if (currentPage == 'home') {
 		})
 	})
 } else {
-	db.collection(collection).where('type', '==', type).onSnapshot(snapshot => {
+	db.collection(collection).where('type', '==', type).orderBy("name").onSnapshot(snapshot => {
 		let changes = snapshot.docChanges();
 		changes.forEach(change => {
 			if (change.type == 'added') {
@@ -121,19 +118,22 @@ if (currentPage == 'home') {
 }
 
 // saving data
-/* form.addEventListener('submit', (event) => {
-	event.preventDefault();
-	var ageInt = parseInt(form.age.value);
-	db.collection('users').add({
-		name: form.name.value,
-		age: ageInt,
-		date: new Date(),
-		userLocation: new firebase.firestore.GeoPoint(lat, lon),
-		creator: [dataRec.name, dataRec.email]
+if (currentPage == 'docAdd') {
+	form.addEventListener('submit', (event) => {
+		event.preventDefault();
+		var priceInt = parseInt(form.price.value);
+		db.collection('products').add({
+			name: form.name.value,
+			price: priceInt,
+			imageURL: form.imageURL.value,
+			type: form.type.value
+		});
+		form.name.value = '';
+		form.price.value = '';
+		form.imageURL.value = '';
+		form.type.value = '';
 	});
-	form.name.value = '';
-	form.age.value = '';
-}); */
+}
 
 function getLocation() {
 	if (navigator.geolocation) {
