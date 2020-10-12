@@ -1,17 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito';
+	background: #FF6600;
+}
+
 canvas {
-  display: block;
-}
-
-#smallText {
-	color: #C8C8C8;
-	font-family: comic sans ms;
-	font-size: 14px;
-	font-weight: 500;
-}
-
-body{
-    background: #FF6600;
-    font-family: ubuntu;
+	display: block;
 }
 
 h1{
@@ -22,37 +19,44 @@ h1{
     text-align: center;
 }
 
-.content{
-    background: #C8C8C8;
-    max-width: 960px;
-    margin: 30px auto;
-    padding:  20px 30px;
-    border-radius: 10px 80px 10px 10px;
-    box-shadow: 1px 3px 5px rgba(0,0,0,0.1)
-}
-
 ul{
-    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(4, 24%);
+    grid-gap: 1em;
+	margin: 0;
     padding: 0;
+	list-style-type: none;
 }
 
 li{
-    padding: 20px;
+    /*padding: 20px;
     background: #9e9e9e;
     font-size: 20px;
     color: black;
     position: relative;
     border-bottom: 1px solid #e6e6e6;
-    height: 56px;
+    height: 56px;*/
+	
+	margin-bottom: 0;
+    background: #DAE7EB;
+    padding: 1em;
+	border: 1px solid #B8C8CE;
+	padding: 1em 1em 0;
 }
 
-li:nth-child(even){
-    padding: 20px;
-    background: white;
+li img{
+	width: 60px;
+    height: 60px;
+    display: block;
+    border-radius: 33%;
 }
 
 li span{
     display: block;
+	margin-bottom: 0;
+    background: #DAE7EB;
+    margin: 1em -1em 0;
+    padding: 1em;
 }
 
 li span:nth-child(2){
@@ -61,7 +65,11 @@ li span:nth-child(2){
     color: black;
 }
 
-li div{
+.content{
+	padding: 2em
+}
+
+/*li div{
     position: absolute;
     top: 0;
     right: 0px;
@@ -70,20 +78,21 @@ li div{
     padding: 10px 0;
     font-weight:  bold;
     cursor:  pointer;
+}*/
+
+button{
+	background-color: #C8C8C8;
+	color: white;
+	font-size: 14px;
+    border: 0;
+    border-radius: 10px;
+    padding: 13px;
+    box-shadow: -1px 0px 1px rgba(0,0,0,0.1);
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
-li div:nth-child(even){
-    position: absolute;
-    top: 0;
-    right: 0px;
-    background: white;
-    width: 40px;
-    text-align: center;
-    padding: 10px 0;
-    font-weight:  bold;
-    cursor:  pointer;
-}
-
+/* Not currently in use for user pages */
 form input{
     float: left;
     width: 38%;
@@ -108,16 +117,4 @@ form:after{
     content: '';
     clear: both;
     display: block;
-}
-
-button{
-	background-color: #C8C8C8;
-	color: white;
-	font-size: 14px;
-    border: 0;
-    border-radius: 10px;
-    padding: 13px;
-    box-shadow: -1px 0px 1px rgba(0,0,0,0.1);
-    font-weight: bold;
-    letter-spacing: 1px;
 }
