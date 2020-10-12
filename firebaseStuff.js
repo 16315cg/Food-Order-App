@@ -1,6 +1,13 @@
 //Written By Cameron Goodey Term 1-3 2020
 //All Firebase code module
 
+/* 
+To do:
+	Fully integrate the user login to allow a user to be logged in as an admin. 
+	The admin will be able to use the docAdd page to add and remove documents. 
+	Preferably the admin would also be able to edit documents within the webpage.
+*/
+
 // database vaiables
 var dataRec = {
     uid:      '',
@@ -58,7 +65,7 @@ function loginOK() {
 	getLocation();
 }
 
-const foodList = document.querySelector('#food-list');
+var foodList = document.querySelector('#food-list');
 const form = document.querySelector('#add-food-form');
 
 function renderFood(doc){
@@ -81,7 +88,7 @@ function renderFood(doc){
 	
 	foodList.appendChild(li);
 	
-	//deleting data
+	//deleting data - This will be used later for the admin (docAdd)  page.
 	/*cross.addEventListener('click', (e) => {
 		e.stopPropagation();
 		let id = e.target.parentElement.getAttribute('data-id');
@@ -91,30 +98,47 @@ function renderFood(doc){
 }
 
 //real-time listener
-if (currentPage == 'home') {
-	db.collection('products').orderBy("name").onSnapshot(snapshot => {
-		let changes = snapshot.docChanges();
-		changes.forEach(change => {
-			if (change.type == 'added') {
-				renderFood(change.doc);
-			} else if (change.type == 'removed') {
-				let li = foodList.querySelector('[data-id=' + change.doc.id + ']');
-				foodList.removeChild(li);
-			}
-		})
+db.collection('products').orderBy("name").onSnapshot(snapshot => {
+	let changes = snapshot.docChanges();
+	changes.forEach(change => {
+		if (change.type == 'added') {
+			renderFood(change.doc);
+		} else if (change.type == 'removed') {
+			let li = foodList.querySelector('[data-id=' + change.doc.id + ']');
+			foodList.removeChild(li);
+		}
 	})
-} else {
-	db.collection(collection).where('type', '==', type).orderBy("name").onSnapshot(snapshot => {
-		let changes = snapshot.docChanges();
-		changes.forEach(change => {
-			if (change.type == 'added') {
-				renderFood(change.doc);
-			} else if (change.type == 'removed') {
-				let li = foodList.querySelector('[data-id=' + change.doc.id + ']');
-				foodList.removeChild(li);
-			}
+})
+
+function manualRead() {
+	$(foodList).empty();
+	
+	if (currentPage == 'home') {
+		db.collection('products').orderBy("name").onSnapshot(snapshot => {
+			let changes = snapshot.docChanges();
+			changes.forEach(change => {
+				if (change.type == 'added') {
+					renderFood(change.doc);
+				} else if (change.type == 'removed') {
+					let li = foodList.querySelector('[data-id=' + change.doc.id + ']');
+					foodList.removeChild(li);
+				}
+			})
 		})
-	})
+	} else {
+		type = currentPage;
+		db.collection(collection).where('type', '==', type).orderBy("name").onSnapshot(snapshot => {
+			let changes = snapshot.docChanges();
+			changes.forEach(change => {
+				if (change.type == 'added') {
+					renderFood(change.doc);
+				} else if (change.type == 'removed') {
+					let li = foodList.querySelector('[data-id=' + change.doc.id + ']');
+					foodList.removeChild(li);
+				}
+			})
+		})
+	}
 }
 
 // saving data

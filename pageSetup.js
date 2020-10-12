@@ -21,21 +21,25 @@ function pageSetup() {
 }
 
 function userLogin() {
-	window.open("login.html", "_self");
+	
 }
 
 function goHome() {
-	window.open("index.html", "_self");
+	currentPage = 'home';
+	manualRead();
 }
 
 function goMeat() {
-	window.open("meat.html", "_self");
+	currentPage = 'meat';
+	manualRead();
 }
 
 function goVege() {
-	window.open("vege.html", "_self");
+	currentPage = 'vegetarian';
+	manualRead();
 }
 
 function goDrink() {
-	window.open("drink.html", "_self");
+	currentPage = 'drink';
+	manualRead();
 }
