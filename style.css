@@ -2,7 +2,7 @@
 
 html, body {
     margin: 0;
-    padding: 0;
+    padding: 2em;
     font-family: 'Nunito';
 	background: #FF6600;
 }
@@ -29,56 +29,40 @@ ul{
 }
 
 li{
-    /*padding: 20px;
-    background: #9e9e9e;
-    font-size: 20px;
-    color: black;
-    position: relative;
-    border-bottom: 1px solid #e6e6e6;
-    height: 56px;*/
-	
-	margin-bottom: 0;
+    margin-bottom: 0;
     background: #DAE7EB;
-    padding: 1em;
+    padding: 0em;
 	border: 1px solid #B8C8CE;
 	padding: 1em 1em 0;
+	cursor:  pointer;
 }
 
 li img{
-	width: 60px;
-    height: 60px;
-    display: block;
-    border-radius: 33%;
+	width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: 100% 100%; /* try 20px 10px */ 
+	float: left;
+	/*max-width: 100%;
+	max-height: 100%;*/
 }
 
 li span{
     display: block;
-	margin-bottom: 0;
-    background: #DAE7EB;
-    margin: 1em -1em 0;
+    background: white;
+	/*This is the important one*/
+    margin: 1em -1em 0em;
     padding: 1em;
+	font-size: 16px;
+    color: black;
+	text-align: right;
 }
 
 li span:nth-child(2){
-    font-size: 16px;
-    margin-top: 6px;
-    color: black;
+	margin-top: 7em;
+	margin-bottom: -4.3em;
+	text-align:left;
 }
-
-.content{
-	padding: 2em
-}
-
-/*li div{
-    position: absolute;
-    top: 0;
-    right: 0px;
-    width: 40px;
-    text-align: center;
-    padding: 10px 0;
-    font-weight:  bold;
-    cursor:  pointer;
-}*/
 
 button{
 	background-color: #C8C8C8;

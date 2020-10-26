@@ -23,8 +23,6 @@ const db = firebase.firestore();
 var lat;
 var lon;
 
-//current issue: runs the listener before it runs the setup so the type sort returns undefined (i think)
-
 //Firebase Login
 function fb_login(_dataRec) {
 	firebase.auth().onAuthStateChanged(newLogin);
@@ -57,10 +55,11 @@ function loginOK() {
 	loginButton.hide();
 	userIcon = createImg(dataRec.photoURL);
 	userIcon.size(40, 40);
-	userIcon.position(40, 40);
-	userNameP = createP().position(userIcon.x + userIcon.width + 10, userIcon.y)
+	userIcon.position(40, 22);
+	userNameP = createP().position(userIcon.x, userIcon.y + userIcon.height + 5)
 	.id('smallText');
 	userNameP.html('Hello ' + dataRec.name);
+	showAdminButton()
 	
 	getLocation();
 }
@@ -73,28 +72,63 @@ function renderFood(doc){
 	let name = document.createElement('span');
 	let price = document.createElement('span');
 	let imageURL = document.createElement('img');
+	let imageURLText = document.createElement('span');
 	let imgURL = doc.data().imageURL;
+	let type = document.createElement('span');
+	let cross = document.createElement('div');
 	
 	li.setAttribute('data-id', doc.id);
 	name.textContent = doc.data().name;
 	price.textContent = "$" + doc.data().price;
 	imageURL.textContent = doc.data().imageURL;
+	imageURLText.textContent = doc.data().imageURL;
+	type.textContent = doc.data().type;
+	cross.textContent = "X";
 	
 	li.appendChild(imageURL);
 	li.appendChild(name);
 	li.appendChild(price);
 	
-	imageURL.src = imgURL;
+	if (currentPage == "docAdd") {
+		li.appendChild(imageURLText);
+		li.appendChild(type);
+		li.appendChild(cross);
+		
+		cross.addEventListener('click', (e) => {
+			e.stopPropagation();
+			let id = e.target.parentElement.getAttribute('data-id');
+			var deleteCheck = confirm("Are you sure you want to delete this?");
+			if (deleteCheck) {
+				db.collection('products').doc(id).delete();
+				console.log('Document ' + id + ' has been deleted. 🦀🦀🦀');
+			}
+		})
+	} else {
+		imageURL.src = imgURL;	
+		//home screen food selection listener
+		li.addEventListener('click', (e) => {
+			e.stopPropagation();
+			let id = e.target.getAttribute('data-id');
+			console.log(id);
+		})
+		name.addEventListener('click', (e) => {
+			e.stopPropagation();
+			let id = e.target.getAttribute('data-id');
+			console.log(id);
+		})
+		price.addEventListener('click', (e) => {
+			e.stopPropagation();
+			let id = e.target.getAttribute('data-id');
+			console.log(id);
+		})
+		imageURL.addEventListener('click', (e) => {
+			e.stopPropagation();
+			let id = e.target.getAttribute('data-id');
+			console.log(id);
+		})
+	}
 	
 	foodList.appendChild(li);
-	
-	//deleting data - This will be used later for the admin (docAdd)  page.
-	/*cross.addEventListener('click', (e) => {
-		e.stopPropagation();
-		let id = e.target.parentElement.getAttribute('data-id');
-		db.collection('meat').doc(id).delete();
-		console.log('Document ' + id + ' has been deleted. 🦀🦀🦀');
-	})*/
 }
 
 //real-time listener

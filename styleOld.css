@@ -43,7 +43,7 @@ li{
     color: black;
     position: relative;
     border-bottom: 1px solid #e6e6e6;
-    height: 56px;
+    height: 120px;
 }
 
 li:nth-child(even){
@@ -112,7 +112,7 @@ form:after{
 
 button{
 	background-color: #C8C8C8;
-	color: white;
+	color: black;
 	font-size: 14px;
     border: 0;
     border-radius: 10px;

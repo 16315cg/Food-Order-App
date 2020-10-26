@@ -21,7 +21,15 @@ function pageSetup() {
 }
 
 function userLogin() {
-	
+	fb_login(dataRec);
+}
+
+function showAdminButton() {
+	if (dataRec.uid == "aW33dzuLqWY2BCWiQdmyrJsxzT62") {
+		adminButton = createButton("Admin");
+		adminButton.position(drinkButton.x + drinkButton.width + 20, drinkButton.y);
+		adminButton.mousePressed(goAdmin);
+	}
 }
 
 function goHome() {
@@ -42,4 +50,8 @@ function goVege() {
 function goDrink() {
 	currentPage = 'drink';
 	manualRead();
+}
+
+function goAdmin() {
+	window.open("docAdd.html", "_self");
 }
