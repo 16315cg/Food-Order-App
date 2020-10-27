@@ -97,7 +97,7 @@ function renderFood(doc){
 		cross.addEventListener('click', (e) => {
 			e.stopPropagation();
 			let id = e.target.parentElement.getAttribute('data-id');
-			var deleteCheck = confirm("Are you sure you want to delete this?");
+			let deleteCheck = confirm("Are you sure you want to delete this?");
 			if (deleteCheck) {
 				db.collection('products').doc(id).delete();
 				console.log('Document ' + id + ' has been deleted. 🦀🦀🦀');
@@ -113,21 +113,20 @@ function renderFood(doc){
 		})
 		name.addEventListener('click', (e) => {
 			e.stopPropagation();
-			let id = e.target.getAttribute('data-id');
+			let id = e.target.parentElement.getAttribute('data-id');
 			console.log(id);
 		})
 		price.addEventListener('click', (e) => {
 			e.stopPropagation();
-			let id = e.target.getAttribute('data-id');
+			let id = e.target.parentElement.getAttribute('data-id');
 			console.log(id);
 		})
 		imageURL.addEventListener('click', (e) => {
 			e.stopPropagation();
-			let id = e.target.getAttribute('data-id');
+			let id = e.target.parentElement.getAttribute('data-id');
 			console.log(id);
 		})
 	}
-	
 	foodList.appendChild(li);
 }
 
