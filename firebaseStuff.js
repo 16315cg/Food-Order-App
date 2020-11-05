@@ -100,7 +100,7 @@ function renderFood(doc){
 			let deleteCheck = confirm("Are you sure you want to delete this?");
 			if (deleteCheck) {
 				db.collection('products').doc(id).delete();
-				console.log('Document ' + id + ' has been deleted. 🦀🦀🦀');
+				console.log('Document ' + id + ' has been deleted.');
 			}
 		})
 	} else {
