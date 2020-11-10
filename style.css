@@ -64,8 +64,9 @@ li span:nth-child(2){
 
 button{
 	background-color: #C8C8C8;
-	color: white;
-	font-size: 0.875rem;
+	color: black;
+	font-family: 'Nunito';
+	font-size: 1.25rem;
     border: 0;
     border-radius: 0.625rem;
     padding: 0.8125rem;
