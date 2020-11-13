@@ -25,7 +25,11 @@ function userLogin() {
 }
 
 function showAdminButton() {
-	if (dataRec.uid == "aW33dzuLqWY2BCWiQdmyrJsxzT62") {
+	if (dataRec.uid == "aW33dzuLqWY2BCWiQdmyrJsxzT62" ||
+	dataRec.uid == "2caewtXLgRZfC1ACF4a7RnhbBO72" ||	
+	// Usually userID would be used for admin however I do not have these users UID's
+	dataRec.email == "bryan.gillies@hvhs.school.nz" ||
+	dataRec.email == "katie.long@hvhs.school.nz") {
 		adminButton = createButton("Admin");
 		adminButton.position(drinkButton.x + drinkButton.width + 20, drinkButton.y);
 		adminButton.mousePressed(goAdmin);
